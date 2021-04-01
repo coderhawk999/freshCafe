@@ -1,0 +1,6 @@
+<h2>Cart show</h2>
+<ul>
+  <% @cart.foodcarts_items.each do |line_item| %>
+    <li>Item: <%= line_item.menu_categories_item.name %>
+  <% end %>
+</ul>

@@ -8,9 +8,8 @@ Rails.application.routes.draw do
       post :add_order_item
     end
   end
-  resources :foodcarts, path: "/home/cart" do
-    resources :foodcarts_items, path: "item"
-  end
+  resources :foodcarts, path: "/home/cart"
+  resources :foodcarts_items
 
   resources :menu_categories, path: "/home/menu" do
     resources :menu_categories_items, path: "item"
