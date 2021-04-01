@@ -1,0 +1,2 @@
+module MenuCatHelper
+end

@@ -1,0 +1,11 @@
+<h1>All Cats</h1> 
+
+
+<%@menu_categories.each do |user| %>
+    <p><%= user.name %>  </p>
+    <%= render user.menu_categories_items %>
+
+<% end %>
+<%= link_to 'New Category', new_menu_category_path %>
+
+

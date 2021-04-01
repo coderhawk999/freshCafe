@@ -1,0 +1,9 @@
+<h1> New Menu category</h1>
+
+<%= simple_form_for @menu_category do |f| %>
+    <%= f.input :name, input_html: { class: "inout" }, label_html: { class: "label" } %>
+    <%= f.input :is_active, input_html: { class: "inout" }, label_html: { class: "label" }, as: :radio_buttons %>
+
+    <%= f.submit :submit, disable_with: "Submiting" %>
+
+<% end %>

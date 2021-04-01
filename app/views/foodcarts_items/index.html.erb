@@ -1,0 +1,11 @@
+<h1>All Cart Items</h1> 
+
+
+
+
+
+<h1> <%= @food_cart.user_id %> </h1>
+<% if @food_cart_items.present? %>
+<%= render @food_cart.foodcarts_items %>
+<% end %>
+   
