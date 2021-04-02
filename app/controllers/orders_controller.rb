@@ -16,7 +16,27 @@ class OrdersController < ApplicationController
   end
 
   def create
-    print(params)
+    @order = Order.new
+    @cart = Foodcart.find_by_user_id(current_user[:id])
+    @totalPrice = 0
+    @cart.foodcarts_items.each do |x|
+      @totalPrice = @totalPrice + (x.menu_categories_item.price * x.quantity)
+    end
+    @order[:user_id] = session[:user_id]
+    @order[:totalPrice] = @totalPrice
+    @order[:completed] = false
+
+    if @order.save
+      @cart.foodcarts_items.each do |x|
+        @orders_item = OrdersItem.new
+        @orders_item[:order_id] = @order.id
+        @orders_item[:menu_categories_item_id] = x.menu_categories_item_id
+        @orders_item[:quantity] = x.quantity
+        @orders_item.save
+      end
+
+      clear_cart
+    end
   end
 
   def add_order_item
