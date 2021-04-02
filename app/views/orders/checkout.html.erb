@@ -1,0 +1,7 @@
+<h1> Order Details</h1>
+<ul>
+  <% @cart.foodcarts_items.each do |line_item| %>
+    <%= render line_item %>   
+  <% end %>
+</ul>
+<%= button_to "Confirm Order", clear_cart_orders_path, method: :delete %>

@@ -1,5 +1,10 @@
 class ApplicationController < ActionController::Base
-  helper_method :current_user, :find_item
+  before_action :store_return_to
+  helper_method :current_user, :store_return_to
+
+  def store_return_to
+    session[:return_to] = request.referer
+  end
 
   def current_user
     if session[:user_id]
@@ -7,11 +12,5 @@ class ApplicationController < ActionController::Base
     else
       @current_user = nil
     end
-  end
-
-  def find_item(menu_categories_id)
-    print("herer", menu_categories_id)
-    # id = menu_categories_id
-    # item = MenuCategoriesItem.find(id)
   end
 end

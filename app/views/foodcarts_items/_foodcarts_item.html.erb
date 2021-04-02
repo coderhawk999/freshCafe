@@ -1,5 +1,15 @@
 
-<%= foodcarts_item.id %>
+<%= foodcarts_item.menu_categories_item.name %>
+ <%= simple_form_for @foodcarts_item, :url => increment_item_foodcarts_items_path, :method => :put do |f| %>
+    <%= f.hidden_field :menu_categories_item_id, :value => foodcarts_item.menu_categories_item.id %>
+    <%= f.submit "+", disable_with: "Submiting..." %>
+<% end %>
 <%= foodcarts_item.quantity %>
-<%= render foodcarts_item.menu_categories_items %>
-<br /> 
+    <%= simple_form_for @foodcarts_item, :url => decrement_item_foodcarts_items_path, :method => :put do |f| %>
+    <%= f.hidden_field :menu_categories_item_id, :value => foodcarts_item.menu_categories_item.id %>
+    <%= f.submit "-", disable_with: "Submiting..." %>
+<% end %>
+
+<%= foodcarts_item.menu_categories_item.price %>
+<%= link_to "Delete", [foodcarts_item],
+            method: :delete, class: "button is-danger" %>

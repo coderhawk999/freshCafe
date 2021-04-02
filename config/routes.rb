@@ -6,10 +6,17 @@ Rails.application.routes.draw do
   resources :orders, path: "/home/orders" do
     collection do
       post :add_order_item
+      delete :clear_cart
+      get :checkout
     end
   end
   resources :foodcarts, path: "/home/cart"
-  resources :foodcarts_items
+  resources :foodcarts_items do
+    collection do
+      put :increment_item
+      put :decrement_item
+    end
+  end
 
   resources :menu_categories, path: "/home/menu" do
     resources :menu_categories_items, path: "item"

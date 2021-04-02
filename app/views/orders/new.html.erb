@@ -1,15 +1,22 @@
-<h1> New  In Order</h1>
-<%= form_with model: @order, local: true do |f| %>
-    ...
-    <fieldset>
-        <legend>Addresses:</legend>
-        <%= f.fields_for :orders_items do |orders_items_form| %>
-            <%= render "address_fields", f: orders_items_form   %>
-        <% end %>
-        <%= link_to_add_fields "Add orders_items", f, :orders_items, "test" %>
-    </fieldset>
+<h1> New  Order</h1>
+<ul>
+  <% @cart.foodcarts_items.each do |line_item| %>
+    <%= render line_item %>   
+  <% end %>
+</ul>
+<%= button_to "Clear Cart", clear_cart_orders_path, method: :delete %>
 
-    <%= f.submit %>
-<%= button_to 'Call Action', add_order_item_orders_path, method: :post %>
+<ul>
+<% @items.each do |item| %>
+<%= simple_form_for @foodcarts_item, :url => add_order_item_orders_path, :method => :post do |f| %>
+    <p> <%= item.name %></p>
+    <%= f.hidden_field :menu_categories_item_id, :value => item.id %>
+
+    <%= f.hidden_field :foodcart_id, :value => @cart.id %>
+
+    <%= f.submit :submit, disable_with: "Submiting..." %>
+
 <% end %>
+<% end %>
+</ul>
 
