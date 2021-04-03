@@ -1,0 +1,23 @@
+<h1> New Walk-in Order </h1>
+
+<ul>
+  <% @cart.foodcarts_items.each do |line_item| %>
+    <%= render line_item %>   
+  <% end %>
+</ul>
+<%= button_to "Clear Cart", clear_cart_orders_path, method: :delete %>
+
+<ul>
+<% @items.each do |item| %>
+<%= simple_form_for @foodcarts_item, :url => add_order_item_orders_path, :method => :post do |f| %>
+    <p> <%= item.name %></p>
+    <%= f.hidden_field :menu_categories_item_id, :value => item.id %>
+
+    <%= f.hidden_field :foodcart_id, :value => @cart.id %>
+
+    <%= f.submit :submit, disable_with: "Submiting..." %>
+
+<% end %>
+<% end %>
+</ul>
+

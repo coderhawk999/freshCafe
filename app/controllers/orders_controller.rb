@@ -9,6 +9,14 @@ class OrdersController < ApplicationController
     @orders = Order.all
   end
 
+  def walkinOrder
+    session[:cart] ||= {}
+
+    @cart = Foodcart.find_by_user_id(current_user[:id])
+    @foodcarts_item = FoodcartsItem.new
+    @items = MenuCategoriesItem.all
+  end
+
   def checkout
     @cart = Foodcart.find_by_user_id(current_user[:id])
     @foodcarts_item = FoodcartsItem.new
@@ -56,6 +64,7 @@ class OrdersController < ApplicationController
       end
     end
   end
+
 
   def clear_cart
     @cart = Foodcart.find_by_user_id(current_user[:id])

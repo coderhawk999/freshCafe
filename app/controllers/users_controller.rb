@@ -7,6 +7,20 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def signup
+    @user = User.new
+  end
+
+  def newsignup
+    @user = User.new(user_params)
+    @user[:is_admin] = false
+    @user[:is_clirk] = false
+
+    if @user.save
+      redirect_to login_path
+    end
+  end
+
   def create
     @user = User.new(user_params)
 
@@ -33,7 +47,11 @@ class UsersController < ApplicationController
 
   private
 
+  def singup_params
+    params.permit(:name, :email, :password, :is_admin, :phone)
+  end
+
   def user_params
-    params.require(:user).permit(:name, :email, :password, :is_admin)
+    params.require(:users).permit(:name, :email, :password, :is_admin,:phone)
   end
 end

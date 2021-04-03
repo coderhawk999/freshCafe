@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_01_191025) do
+ActiveRecord::Schema.define(version: 2021_04_03_163734) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 2021_04_01_191025) do
     t.boolean "is_clirk"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "phone"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

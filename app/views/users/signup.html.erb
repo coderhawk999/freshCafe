@@ -1,0 +1,40 @@
+<div class="flex items-center min-h-screen bg-white dark:bg-gray-900">
+    <div class="container mx-auto align-middle">
+             <h1 class=" text-5xl font-bold text-gray-700 dark:text-gray-200 text-center ">Fresh <span class="text-red-500">Cafe </span></h1>
+
+        <div class="max-w-md mx-auto my-10">
+
+            <div class="text-center">
+                <h1 class="my-3 text-3xl font-semibold text-gray-700 dark:text-gray-200 text-center py-10 text-opacity-30">Create an Account</span></h1>
+
+            </div>
+            <div class="m-7">
+               <%= simple_form_for :users ,path: signup_path do |f| %>
+                    <div class="mb-6">
+                        <label for="email" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Full Name</label>
+                        <%= f.input :name, label: false, input_html: { class: "w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-gray-100 focus:border-gray-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" } %>
+                    </div>
+                    <div class="mb-6">
+                        <label for="email" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Email Address</label>
+                        <%= f.input :email, label: false, input_html: { class: "w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-gray-100 focus:border-gray-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" } %>
+                    </div>
+                     <div class="mb-6">
+                        <label for="email" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Phone Number</label>
+                        <%= f.input :phone, label: false, input_html: { class: "w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-gray-100 focus:border-gray-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" } %>
+                    </div>
+                    <div class="mb-6">
+                        <div class="flex justify-between mb-2">
+                            <label for="password" class="text-sm text-gray-600 dark:text-gray-400">Password</label>
+                        </div>
+                        <%= f.input :password, type: "password" , label: false, input_html: { class: "w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-gray-100 focus:border-gray-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" } %>
+                        
+                    </div>
+                    <div class="mb-6">
+                        <%= f.button :submit, "Sign Up",  class: "w-full px-3 py-4 text-white bg-red-500  rounded-md focus:bg-red-600 hover:bg-red-400 focus:outline-none cursor-pointer " %>
+                    </div>
+                    <p class="text-sm text-center text-gray-400">Already have an account? <a href="#!" class="text-red-400 focus:outline-none focus:underline focus:text-red-500 dark:focus:border-red-800">Sign In</a>.</p>
+               <% end %>
+            </div>
+        </div>
+    </div>
+</div>
