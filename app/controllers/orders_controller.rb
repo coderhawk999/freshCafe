@@ -2,16 +2,33 @@ class OrdersController < ApplicationController
   def new
     @cart = Foodcart.find_by_user_id(current_user[:id])
     @foodcarts_item = FoodcartsItem.new
+    @menu_categories = MenuCategory.all
     @items = MenuCategoriesItem.all
   end
 
+  def updateStatus
+    @order = Order.find(params[:id])
+  end
+
+  def update
+    @order = Order.find(params[:id])
+    if params[:completed] == "Completed"
+      @order[:completed] = true
+    else
+      @order[:completed] = false
+    end
+
+    @order.update(order_params)
+    redirect_to orders_path
+  end
+
   def index
+    @completedOrders = Order.where(completed: true)
     @orders = Order.all
   end
 
   def walkinOrder
     session[:cart] ||= {}
-
     @cart = Foodcart.find_by_user_id(current_user[:id])
     @foodcarts_item = FoodcartsItem.new
     @items = MenuCategoriesItem.all
@@ -21,14 +38,19 @@ class OrdersController < ApplicationController
     @cart = Foodcart.find_by_user_id(current_user[:id])
     @foodcarts_item = FoodcartsItem.new
     @items = MenuCategoriesItem.all
+    @totalPrice = 0
+    @cart.foodcarts_items.each do |x|
+      @totalPrice = @totalPrice.to_i + (x.menu_categories_item.price.to_i * x.quantity.to_i)
+    end
   end
 
   def create
+
     @order = Order.new
     @cart = Foodcart.find_by_user_id(current_user[:id])
     @totalPrice = 0
     @cart.foodcarts_items.each do |x|
-      @totalPrice = @totalPrice + (x.menu_categories_item.price * x.quantity)
+      @totalPrice = @totalPrice.to_i + (x.menu_categories_item.price.to_i * x.quantity.to_i)
     end
     @order[:user_id] = session[:user_id]
     @order[:totalPrice] = @totalPrice
@@ -65,18 +87,21 @@ class OrdersController < ApplicationController
     end
   end
 
-
   def clear_cart
     @cart = Foodcart.find_by_user_id(current_user[:id])
     @cart_items = @cart.foodcarts_items.find_by(foodcart_id: @cart.id)
     @cart.foodcarts_items.destroy_all
-    redirect_to new_order_path
+    if request.path == new_order_path
+      redirect_to new_order_path
+    else
+      redirect_to orders_path
+    end
   end
 
   private
 
   def order_params
-    params.require(:order).permit(:status, :totalPrice, :user_id, orders_items_attributes: [:id, :order_id, :quantity, :menu_categories_item_id])
+    params.require(:order).permit(:completed, :totalPrice, :user_id, :is_walkin,:id)
   end
 
   def cart_params

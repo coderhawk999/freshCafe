@@ -7,10 +7,13 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :users, path: "/home/users"
+  
   resources :orders, path: "/home/orders" do
     resources :walkin_orders
 
     collection do
+      get :updateStatus,path: "/:id/updateOrder"
+      put :updateOrder ,path: "/:id/updateOrder"
       get :walkinOrder
       post :add_order_item
       post :add_to_offcart

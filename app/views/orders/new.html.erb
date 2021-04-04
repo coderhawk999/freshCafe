@@ -1,10 +1,98 @@
-<h1> New  Order</h1>
-<ul>
+<div class="flex pt-10 pb-5 align-middle justify-between">
+  <!-- Top NavBar -->
+  <div class="flex flex-1">
+      <svg class="w-10 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+        </svg>
+  
+    <h1 class="text-4xl font-bold">New Walk-in Order</h1>
+  </div>
+  <%= link_to "Cancel Order", new_order_path, class: "mr-5 px-6 py-2 text-black
+  bg-white  rounded-md focus:bg-red-600 hover:shadow-lg focus:outline-none shadow
+  cursor-pointer " %>
+  <%= link_to "Confirm Order", checkout_orders_path, class: "px-6 py-2 text-white
+              bg-red-500 rounded-md focus:bg-red-600  hover:shadow-lg focus:outline-none
+              cursor-pointer " %>
+
+  <br />
+</div>
+<div class="bg-white p-10 shadow-md mt-10">
+  <div class="flex justify-between">
+      <div class="flex flex-1">
+      <svg       class="w-6 mr-2"
+      xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
+        </svg>
+      <p class="text-3xl font-semibold">
+         Order Food Cart
+      </p>
+      </div>
+     
+  </div>
+  <div class="flex flex-wrap">
+   <% @cart.foodcarts_items.each do |line_item| %>
+    <%= render line_item %>   
+  <% end %>
+      
+  </div>
+  <%= button_to "Clear Cart", clear_cart_orders_path, method: :delete , class: "w-40 px-3 py-2 mt-10 text-white bg-red-500  rounded-md focus:bg-red-600 hover:bg-red-400 focus:outline-none cursor-pointer " %>
+
+</div>
+
+
+<div class="mt-20">
+  <% @menu_categories.each do |menu| %>
+
+<div class="bg-white p-10 shadow-md mt-10">
+  <div class="flex justify-between">
+      <div class="flex flex-1">
+      <svg       class="w-6 mr-2"
+      xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
+        </svg>
+      <p class="text-3xl font-semibold">
+          <%= menu.name %>
+      </p>
+      </div>
+     
+  </div>
+  <div class="flex flex-wrap">
+    <% menu.menu_categories_items.each do |item| %>
+      <div class="w-72 p-8 bg-white text-center rounded-2xl shadow border-2 m-7">
+          <h1 class="text-black font-semibold text-1xl"><%= item.name %></h1>
+          <p class="pt-2 tracking-wide">
+              <span class="text-gray-400 align-top">₹</span>
+              <span class="text-3xl font-semibold"><%= item.price %></span>
+          </p>
+          <hr class="mt-4 border-1">
+          <div class="pt-2">
+              <p class="font-semibold">Description</p>
+              <p class="font-semibold text-gray-400 text-center pt-5 pb-7">
+                <%= item.description %>
+              </p>
+              <%= simple_form_for @foodcarts_item, :url => add_order_item_orders_path, :method => :post do |f| %>
+    <%= f.hidden_field :menu_categories_item_id, :value => item.id %>
+
+    <%= f.hidden_field :foodcart_id, :value => @cart.id %>
+
+    <%= f.submit "Add to Cart", class: "w-full px-3 py-2 text-white bg-red-500  rounded-md focus:bg-red-600 hover:bg-red-400 focus:outline-none cursor-pointer " %>
+
+<% end %>
+          </div>
+      </div>
+      <% end %>
+      
+  </div>
+
+</div>
+<% end %> 
+</div>
+
+<!-- <ul>
   <% @cart.foodcarts_items.each do |line_item| %>
     <%= render line_item %>   
   <% end %>
 </ul>
-<%= button_to "Clear Cart", clear_cart_orders_path, method: :delete %>
 
 <ul>
 <% @items.each do |item| %>
@@ -18,5 +106,5 @@
 
 <% end %>
 <% end %>
-</ul>
+</ul> -->
 

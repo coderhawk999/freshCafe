@@ -1,2 +1,55 @@
-<h1>  ALL Orders </h1>
 
+<div class="flex pt-10 pb-5 align-middle justify-between">
+    <!-- Top NavBar -->
+    <div class="flex flex-1">
+        <svg class="w-10 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+          </svg>
+    
+      <h1 class="text-4xl font-bold">All Orders</h1>
+    </div>
+  
+    <%= link_to "New Walkin Order", new_order_path, class: "px-6 py-2 text-white
+                bg-red-500 rounded-md focus:bg-red-600 hover:bg-red-400 focus:outline-none
+                cursor-pointer " %>
+  
+    <br />
+  </div>
+  <div class="mt-20">
+    <div
+      class="pb-2 flex items-center justify-evenly text-red-500 font-semibold dark:text-gray-400 border-b dark:border-gray-600 mb-10"
+    >
+      <span class="ml-20"> </span>
+      <span class="flex-1"> Order Id </span>
+      <span class="flex-1"> Order by </span>
+      <span class="flex-1"> Total Items </span>
+      <span class="flex-1"> Order Total </span>
+  
+      <span class="flex-1"> Order Status </span>
+      <span class="flex-1"> Order Type </span>
+      <span class="flex-1"> Udpate Status </span>
+
+    </div>
+  
+    <% @orders.each do |order| %>
+    <div
+      class="flex py-6 justify-evenly bg-white font-semibold text-gray-500 dark:bg-gray-600 shadow rounded-lg mb-10"
+    >
+      <span class="ml-20"> </span>
+      <span class="flex-1"> <%= order.id %> </span>
+      <span class="flex-1"> <%= order.user.name %> </span>
+      <span class="flex-1"> <%= order.orders_items.count %> </span>
+      <span class="flex-1"> <%= order.totalPrice %> </span>
+  
+      <span class="flex-1"> <%= order.completed ? "Completed" : "In Complete" %> </span>
+      <span class="flex-1"><%= order.is_walkin ? "Walk In" : "Online" %> </span>
+      
+      <span class="flex-1 flex"><svg class="w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+      </svg> <%= link_to "Update Status", "/home/orders/#{order.id}/updateOrder" %> </span>
+    </div>
+    <p></p>
+  
+    <% end %>
+  </div>
+  

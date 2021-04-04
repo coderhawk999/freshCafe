@@ -1,7 +1,66 @@
-<h1> Order Details</h1>
-<ul>
+<div class="flex pt-10 pb-5 align-middle justify-between">
+  <!-- Top NavBar -->
+  <div class="flex flex-1">
+      <svg class="w-10 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+        </svg>
+  
+    <h1 class="text-4xl font-bold">New Walk-in Order</h1>
+  </div>
+  <%= link_to "Cancel Order", orders_path, class: "mr-5 px-6 py-2 text-black
+  bg-white  rounded-md focus:bg-red-600 hover:shadow-lg focus:outline-none shadow
+  cursor-pointer " %>
+  <%= link_to "Back to Cart", new_order_path, class: "px-6 py-2 text-white
+              bg-red-500 rounded-md focus:bg-red-600  hover:shadow-lg focus:outline-none
+              cursor-pointer " %>
+
+  <br />
+</div>
+<div class="bg-white p-10 shadow-md mt-10">
+  <div class="flex justify-between">
+      <div class="flex flex-1">
+      <svg       class="w-6 mr-2"
+      xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
+        </svg>
+      <p class="text-3xl font-semibold">
+         Order Food Cart
+      </p>
+      </div>
+     
+  </div>
+  <div class="flex flex-wrap">
+   <% @cart.foodcarts_items.each do |line_item| %>
+   <div class="w-72 p-8 bg-white text-center rounded-2xl shadow border-2 m-7">
+    <h1 class="text-black font-semibold text-1xl"><%= line_item.menu_categories_item.name %></h1>
+    <p class="pt-2 tracking-wide">
+        <span class="text-gray-400 align-top">₹</span>
+        <span class="text-3xl font-semibold"><%= line_item.menu_categories_item.price.to_i * line_item.quantity.to_i %></span>
+    </p>
+    <hr class="mt-4 border-1">
+    <div class="pt-2">
+        <p class="font-semibold">Item Description</p>
+        <p class="font-semibold text-gray-400 text-center pt-5 pb-7">
+          <%= line_item.menu_categories_item.description %>
+        </p>
+       
+    </div>
+</div>
+
+  <% end %>
+      
+  </div>
+  <div class="flex mt-20 justify-end">
+    <div>
+    <p class="text-3xl font-semibold text-center"> Total Order Price :  <span class="font-bold text-red-500"><%= @totalPrice %></span></p>
+    <%= button_to "Place Order", orders_path, method: :post , class: "w-40 px-3 py-2 mt-10 self-center text-white bg-red-500  rounded-md focus:bg-red-600 hover:bg-red-400 focus:outline-none cursor-pointer " %>
+  </div>
+  </div>
+
+</div>
+
+<!-- <ul>
   <% @cart.foodcarts_items.each do |line_item| %>
     <%= render line_item %>   
   <% end %>
-</ul>
-<%= button_to "Confirm Order", orders_path, method: :post %>
+</ul> -->

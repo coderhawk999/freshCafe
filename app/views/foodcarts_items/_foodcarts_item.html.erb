@@ -1,15 +1,28 @@
 
-<%= foodcarts_item.menu_categories_item.name %>
- <%= simple_form_for @foodcarts_item, :url => increment_item_foodcarts_items_path, :method => :put do |f| %>
+
+   <div class="w-72 p-8 bg-white text-center rounded-2xl shadow border-2 m-7">
+    <h1 class="text-black font-semibold text-1xl"><%= foodcarts_item.menu_categories_item.name %></h1>
+    <p class="pt-2 tracking-wide">
+        <span class="text-gray-400 align-top">₹</span>
+        <span class="text-3xl font-semibold"><%= foodcarts_item.menu_categories_item.price.to_i * foodcarts_item.quantity.to_i %></span>
+    </p>
+    <hr class="mt-4 border-1">
+    <div class="pt-2">
+        <p class="font-semibold">Description</p>
+        <p class="font-semibold text-gray-400 text-center pt-5 pb-7">
+          <%= foodcarts_item.menu_categories_item.description %>
+        </p>
+        <%= simple_form_for @foodcarts_item, :url => increment_item_foodcarts_items_path, :method => :put do |f| %>
     <%= f.hidden_field :menu_categories_item_id, :value => foodcarts_item.menu_categories_item.id %>
-    <%= f.submit "+", disable_with: "Submiting..." %>
+    <%= f.submit "+",  class: "w-full px-3 py-2 text-white bg-red-500  rounded-md focus:bg-red-600 hover:bg-red-400 focus:outline-none cursor-pointer "  %>
 <% end %>
 <%= foodcarts_item.quantity %>
     <%= simple_form_for @foodcarts_item, :url => decrement_item_foodcarts_items_path, :method => :put do |f| %>
     <%= f.hidden_field :menu_categories_item_id, :value => foodcarts_item.menu_categories_item.id %>
-    <%= f.submit "-", disable_with: "Submiting..." %>
+    <%= f.submit "-",  class: "w-full px-3 py-2 text-white bg-red-500  rounded-md focus:bg-red-600 hover:bg-red-400 focus:outline-none cursor-pointer "  %>
 <% end %>
 
-<%= foodcarts_item.menu_categories_item.price %>
-<%= link_to "Delete", [foodcarts_item],
-            method: :delete, class: "button is-danger" %>
+    </div>
+</div>
+
+
