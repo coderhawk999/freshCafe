@@ -1,11 +1,82 @@
-<h1>All Cats</h1> 
+<div class="flex pt-10 pb-5 align-middle justify-between">
+  <!-- Top NavBar -->
+  <div class="flex flex-1">
+    <svg
+      class="w-10 mr-2"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M4 6h16M4 12h16M4 18h16"
+      />
+    </svg>
+    <h1 class="text-4xl font-bold">Food Menu</h1>
+  </div>
 
+  <%= link_to "Add New Menu Category", new_menu_category_path, class: "px-6 py-2 text-white
+  bg-red-500 rounded-md focus:bg-red-600 hover:bg-red-400 focus:outline-none
+  cursor-pointer " %>
 
-<%@menu_categories.each do |user| %>
-    <p><%= user.name %>  </p>
-    <%= render user.menu_categories_items %>
+  <br />
+</div>
 
-<% end %>
-<%= link_to 'New Category', new_menu_category_path %>
+<div class="mt-20">
+    <% @menu_categories.each do |menu| %>
 
+<div class="bg-white p-10 shadow-md mt-10">
+    <div class="flex justify-between">
+        <div class="flex flex-1">
+        <svg       class="w-6 mr-2"
+        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
+          </svg>
+        <p class="text-3xl font-semibold">
+            <%= menu.name %>
+        </p>
+        </div>
+        <%= link_to "Add new item", "/home/menu/#{menu.id}/item/new", class: "px-6 py-2 text-white
+        bg-red-500 rounded-md focus:bg-red-600 hover:bg-red-400 focus:outline-none
+        cursor-pointer " %>
+    </div>
+    <div class="flex flex-wrap">
+      <% menu.menu_categories_items.each do |item| %>
+        <div class="w-72 p-8 bg-white text-center rounded-2xl shadow border-2 m-7">
+            <h1 class="text-black font-semibold text-1xl"><%= item.name %></h1>
+            <p class="pt-2 tracking-wide">
+                <span class="text-gray-400 align-top">₹</span>
+                <span class="text-3xl font-semibold"><%= item.price %></span>
+            </p>
+            <hr class="mt-4 border-1">
+            <div class="pt-2">
+                <p class="font-semibold">Description</p>
+                <p class="font-semibold text-gray-400 text-center pt-5">
+                  <%= item.description %>
+                </p>
+    
+                <a href="#" class="">
+                    <p class="px-6 py-2 text-white
+                    bg-red-500 rounded-md focus:bg-red-600 hover:bg-red-400 focus:outline-none
+                    cursor-pointer mt-4 ">
+                        <span class="font-medium">
+                            Edit
+                        </span>
+                       
+                    </p>
+                </a>
+            </div>
+        </div>
+        <% end %>
+        
+    </div>
+
+</div>
+<% end %> 
+</div>
+
+<p></p>
 

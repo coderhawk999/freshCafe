@@ -1,9 +1,58 @@
-<h1>All Users</h1> 
+<div class="flex pt-10 pb-5 align-middle justify-between">
+  <!-- Top NavBar -->
+  <div class="flex flex-1">
+    <svg
+      class="w-10 mr-2"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+      />
+    </svg>
+    <h1 class="text-4xl font-bold">All Owners</h1>
+  </div>
 
-<% @users.each do |user| %>
-    <p><%= user.name %>  </p>
+  <%= link_to "Add New User", new_user_path, class: "px-6 py-2 text-white
+              bg-red-500 rounded-md focus:bg-red-600 hover:bg-red-400 focus:outline-none
+              cursor-pointer " %>
 
-<% end %>
-<%= link_to "New User", new_user_path %>
+  <br />
+</div>
+<div class="mt-20">
+  <div
+    class="pb-2 flex items-center justify-evenly text-red-500 font-semibold dark:text-gray-400 border-b dark:border-gray-600 mb-10"
+  >
+    <span class="ml-20"> </span>
+    <span class="flex-1"> Id </span>
+    <span class="flex-1"> Full Name </span>
+    <span class="flex-1"> Email Address </span>
+    <span class="flex-1"> Phone Number </span>
 
+    <span class="flex-1"> Role </span>
+    <span class="flex-1"> date added </span>
+  </div>
 
+  <% @users.each do |user| %>
+  <div
+    class="flex py-6 justify-evenly bg-white font-semibold text-gray-500 dark:bg-gray-600 shadow rounded-lg cursor-pointer mb-10"
+  >
+    <span class="ml-20"> </span>
+    <span class="flex-1"> <%= user.id %> </span>
+    <span class="flex-1"> <%= user.name %> </span>
+    <span class="flex-1"> <%= user.email %> </span>
+    <span class="flex-1"> <%= user.phone %> </span>
+
+    <span class="flex-1"> Role </span>
+    <span class="flex-1"> date added </span>
+
+  </div>
+  <p></p>
+
+  <% end %>
+</div>

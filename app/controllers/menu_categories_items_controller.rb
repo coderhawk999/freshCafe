@@ -5,6 +5,11 @@ class MenuCategoriesItemsController < ApplicationController
   end
 
   def create
+    if params[:is_active] == "Active"
+      params[:is_active] = true
+    else
+      params[:is_active] = false
+    end
     @menu_category = MenuCategory.find(params[:menu_category_id])
     @menu_category_item = @menu_category.menu_categories_items.create(menu_items_params)
     redirect_to menu_categories_path

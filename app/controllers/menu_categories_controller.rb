@@ -8,6 +8,12 @@ class MenuCategoriesController < ApplicationController
   end
 
   def create
+    if params[:is_active] == "Active"
+      params[:is_active] = true
+    else
+      params[:is_active] = false
+    end
+
     @menu_category = MenuCategory.new(menu_params)
 
     if @menu_category.save
