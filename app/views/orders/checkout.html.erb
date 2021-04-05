@@ -1,18 +1,7 @@
 <div class="flex pt-10 pb-5 align-middle justify-between">
   <!-- Top NavBar -->
-  <div class="flex flex-1">
-      <svg class="w-10 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-        </svg>
-  
-    <h1 class="text-4xl font-bold">New Walk-in Order</h1>
-  </div>
-  <%= link_to "Cancel Order", orders_path, class: "mr-5 px-6 py-2 text-black
-  bg-white  rounded-md focus:bg-red-600 hover:shadow-lg focus:outline-none shadow
-  cursor-pointer " %>
-  <%= link_to "Back to Cart", new_order_path, class: "px-6 py-2 text-white
-              bg-red-500 rounded-md focus:bg-red-600  hover:shadow-lg focus:outline-none
-              cursor-pointer " %>
+ 
+ 
 
   <br />
 </div>
@@ -51,9 +40,14 @@
       
   </div>
   <div class="flex mt-20 justify-end">
+    
     <div>
     <p class="text-3xl font-semibold text-center"> Total Order Price :  <span class="font-bold text-red-500"><%= @totalPrice %></span></p>
-    <%= button_to "Place Order", orders_path, method: :post , class: "w-40 px-3 py-2 mt-10 self-center text-white bg-red-500  rounded-md focus:bg-red-600 hover:bg-red-400 focus:outline-none cursor-pointer " %>
+    <div class="flex">
+      <%= button_to "Cancel Order", clear_cart_orders_path, method: :post , class: "mr-2 w-40 px-3 py-2 mt-10 self-center text-white bg-red-500  rounded-md focus:bg-red-600 hover:bg-red-400 focus:outline-none cursor-pointer " , method: :delete%>
+
+      <%= button_to "Place Order", orders_path, method: :post , class: "w-40 px-3 py-2 mt-10 self-center text-white bg-red-500  rounded-md focus:bg-red-600 hover:bg-red-400 focus:outline-none cursor-pointer " %></div>
+    
   </div>
   </div>
 

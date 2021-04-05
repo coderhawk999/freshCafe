@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all
+    adminAuth
+    @users = User.where.not(id: session[:user_id])
   end
 
   def new
+    adminAuth
     @user = User.new
   end
 
@@ -26,6 +28,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    adminAuth
     if params[:user][:is_admin] == "Admin"
       params[:user][:is_admin] = true
       params[:user][:is_clirk] = false
@@ -47,9 +50,16 @@ class UsersController < ApplicationController
   end
 
   def show
+    adminAuth
     @users = User.all
   end
 
+  def destroy
+    adminAuth
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to users_path
+  end
   private
 
   def singup_params

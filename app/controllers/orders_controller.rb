@@ -12,6 +12,7 @@ class OrdersController < ApplicationController
   end
 
   def update
+    cafeAuth
     @order = Order.find(params[:id])
     if params[:completed] == "Completed"
       @order[:completed] = true
@@ -23,6 +24,7 @@ class OrdersController < ApplicationController
   end
 
   def index
+    cafeAuth
     @completedOrders = Order.where(completed: true)
     @orders = Order.all
   end
@@ -33,6 +35,7 @@ class OrdersController < ApplicationController
   end
 
   def walkinOrder
+    cafeAuth
     session[:cart] ||= {}
     @cart = Foodcart.find_by_user_id(current_user[:id])
     @foodcarts_item = FoodcartsItem.new
@@ -78,6 +81,7 @@ class OrdersController < ApplicationController
     end
   end
 
+ 
 
   def FoodMenu
     @cart = Foodcart.find_by_user_id(current_user[:id])

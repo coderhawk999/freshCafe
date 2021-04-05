@@ -35,12 +35,12 @@
     <span class="flex-1"> Phone Number </span>
 
     <span class="flex-1"> Role </span>
-    <span class="flex-1"> date added </span>
+    <span class="flex-1"> Remove User </span>
   </div>
 
   <% @users.each do |user| %>
   <div
-    class="flex py-6 justify-evenly bg-white font-semibold text-gray-500 dark:bg-gray-600 shadow rounded-lg cursor-pointer mb-10"
+    class="flex py-6 justify-evenly bg-white font-semibold text-gray-500 dark:bg-gray-600 shadow rounded-lg mb-10"
   >
     <span class="ml-20"> </span>
     <span class="flex-1"> <%= user.id %> </span>
@@ -48,8 +48,10 @@
     <span class="flex-1"> <%= user.email %> </span>
     <span class="flex-1"> <%= user.phone %> </span>
 
-    <span class="flex-1"> Role </span>
-    <span class="flex-1"> date added </span>
+    <span class="flex-1"> <%= user.is_admin ? "Admin" : user.is_clirk ? "Clerk" : "Customer" %> </span>
+    <span class="flex-1">   <%= link_to "Delete User", "/home/users/#{user.id}", class: "px-6 py-2 text-white
+      bg-red-500 rounded-md focus:bg-red-600 hover:bg-red-400 focus:outline-none
+      cursor-pointer ",method: :delete %> </span>
 
   </div>
   <p></p>

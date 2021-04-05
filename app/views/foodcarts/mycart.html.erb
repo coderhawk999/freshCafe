@@ -1,0 +1,30 @@
+<div class="bg-white p-10 shadow-md mt-10">
+    <div class="flex justify-between">
+        <div class="flex flex-1">
+        <svg       class="w-6 mr-2"
+        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
+          </svg>
+        <p class="text-3xl font-semibold">
+           Order Cart
+        </p>
+        </div>
+       
+    </div>
+    <div class="flex flex-wrap">
+     <% @cart.foodcarts_items.each do |line_item| %>
+      <%= render line_item %>   
+    <% end %>
+        
+    </div>
+    
+    <div class="flex justify-end">
+      <%= link_to "Clear Cart", clear_cart_orders_path, class: "px-6 py-2 text-red-400 mr-2
+      bg-white border-2 rounded-md focus:bg-red-600  hover:shadow-lg focus:outline-none
+      cursor-pointer " , method: :delete %>
+      <%= link_to "Checkout", checkout_orders_path, class: "px-6 py-2 text-white
+      bg-red-500 rounded-md focus:bg-red-600  hover:shadow-lg focus:outline-none
+      cursor-pointer " %>
+    </div>
+
+  </div>
