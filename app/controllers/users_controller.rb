@@ -22,15 +22,16 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-
-    if params[:is_admin] == "Admin"
-      @user[:is_admin] = true
-      @user[:is_clirk] = false
-    elsif params[:is_admin] == "Clerk"
-      @user[:is_admin] = false
-      @user[:is_clirk] = true
+    if params[:user][:is_admin] == "Admin"
+      params[:user][:is_admin] = true
+      params[:user][:is_clirk] = false
+    elsif params[:user][:is_admin] == "Clerk"
+      params[:user][:is_admin] = false
+      params[:user][:is_clirk] = true
     end
+    @user = User.new(user_params)
+    print(@user)
+    
     @foodcart = Foodcart.new
 
     if @user.save
@@ -52,6 +53,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :is_admin,:phone)
+    params.require(:user).permit(:name, :email, :password, :is_admin,:phone, :is_clirk)
   end
 end

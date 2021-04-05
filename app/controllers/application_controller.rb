@@ -12,7 +12,11 @@ class ApplicationController < ActionController::Base
 
   def loggedIn
     if session[:user_id]
-      return "application"
+      if current_user.is_admin?
+        return "application"
+      else
+        return "clerkLayout"
+      end
     else
       return "loginLayout"
     end

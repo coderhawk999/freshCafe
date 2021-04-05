@@ -45,7 +45,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-
     @order = Order.new
     @cart = Foodcart.find_by_user_id(current_user[:id])
     @totalPrice = 0
@@ -55,6 +54,11 @@ class OrdersController < ApplicationController
     @order[:user_id] = session[:user_id]
     @order[:totalPrice] = @totalPrice
     @order[:completed] = false
+    if current_user.is_admin || current_user.is_clirk
+      @order[:is_walkin] = true
+    else
+      @order[:is_walkin] = false
+    end
 
     if @order.save
       @cart.foodcarts_items.each do |x|

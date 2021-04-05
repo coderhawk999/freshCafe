@@ -11,7 +11,8 @@
 
         <div class="hidden sm:flex sm:items-center">
           <a href="#" class="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-4">Sign in</a>
-          <a href="#" class="text-gray-800 text-sm font-semibold border px-4 py-2 rounded-lg hover:text-purple-600 hover:border-purple-600">Sign up</a>
+          <%= button_to "Sign Out", logout_path, method: :post , class: "text-gray-800 text-sm font-semibold border px-4 py-2 rounded-lg hover:text-red-600 hover:border-red-600" %>
+
         </div>
 
         <div class="sm:hidden cursor-pointer">
