@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get "signup", to:"users#signup"
   post "signup", to:"users#newsignup"
 
-
+  get "/home/Food-Menu",   to:"orders#FoodMenu" 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :users, path: "/home/users"
   
@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       get :updateStatus,path: "/:id/updateOrder"
       put :updateOrder ,path: "/:id/updateOrder"
       get :walkinOrder
+      get :myorders
       post :add_order_item
       post :add_to_offcart
       delete :clear_cart

@@ -14,8 +14,10 @@ class ApplicationController < ActionController::Base
     if session[:user_id]
       if current_user.is_admin?
         return "application"
-      else
+      elsif current_user.is_clirk
         return "clerkLayout"
+      else
+        return "customerLayout"
       end
     else
       return "loginLayout"

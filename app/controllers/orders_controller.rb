@@ -17,7 +17,6 @@ class OrdersController < ApplicationController
     else
       @order[:completed] = false
     end
-
     @order.update(order_params)
     redirect_to orders_path
   end
@@ -25,6 +24,11 @@ class OrdersController < ApplicationController
   def index
     @completedOrders = Order.where(completed: true)
     @orders = Order.all
+  end
+
+  def myorders
+    @completedOrders = Order.where(completed: true)
+    @orders = Order.where(user_id: session[:user_id])
   end
 
   def walkinOrder
@@ -73,6 +77,14 @@ class OrdersController < ApplicationController
     end
   end
 
+
+  def FoodMenu
+    @cart = Foodcart.find_by_user_id(current_user[:id])
+    @foodcarts_item = FoodcartsItem.new
+    @menu_categories = MenuCategory.all
+    @items = MenuCategoriesItem.all
+  end
+
   def add_order_item
     @cart = Foodcart.find_by_user_id(current_user[:id])
     @current_item = FoodcartsItem.find_by(foodcart_id: @cart.id, menu_categories_item_id: params[:foodcarts_item][:menu_categories_item_id])
@@ -86,7 +98,12 @@ class OrdersController < ApplicationController
       @foodcarts_item[:quantity] = 1
 
       if @foodcarts_item.save
-        redirect_to new_order_path
+
+        if !current_user.is_admin && !current_user.is_clirk
+          redirect_to home_Food_Menu_path
+        else
+          redirect_to new_order_path
+        end
       end
     end
   end

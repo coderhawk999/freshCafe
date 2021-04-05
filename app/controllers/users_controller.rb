@@ -15,9 +15,13 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user[:is_admin] = false
     @user[:is_clirk] = false
+        @foodcart = Foodcart.new
 
     if @user.save
-      redirect_to login_path
+      @foodcart[:user_id] = @user.id
+      if @foodcart.save
+        redirect_to login_path
+      end
     end
   end
 

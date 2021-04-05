@@ -25,7 +25,11 @@ class FoodcartsItemsController < ApplicationController
     @food_cart_item = @food_cart.foodcarts_items.find_by(foodcart_id: @food_cart.id, menu_categories_item_id: params[:foodcarts_item][:menu_categories_item_id])
     @food_cart_item[:quantity] = @food_cart_item.quantity + 1
     @food_cart_item.update(cart_params)
-    redirect_to new_order_path    
+    if !current_user.is_admin && !current_user.is_clirk
+      redirect_to home_Food_Menu_path
+    else
+      redirect_to new_order_path    
+    end
   end
 
   def decrement_item
@@ -36,7 +40,11 @@ class FoodcartsItemsController < ApplicationController
       @food_cart_item[:quantity] = @food_cart_item.quantity - 1
       @food_cart_item.update(cart_params)
     end
-    redirect_to new_order_path
+    if !current_user.is_admin && !current_user.is_clirk
+      redirect_to home_Food_Menu_path
+    else
+      redirect_to new_order_path    
+    end
   end
 
 

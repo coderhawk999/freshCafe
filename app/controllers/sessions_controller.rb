@@ -9,8 +9,10 @@ class SessionsController < ApplicationController
 
       if @user.is_admin
         redirect_to users_path
-      else
+      elsif @user.is_clirk
         redirect_to orders_path
+      else
+        redirect_to myorders_orders_path
       end
     end
   end

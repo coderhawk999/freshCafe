@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FreshCafe</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_pack_tag "application", 'data-turbolinks-track': "reload" %>
+    <%= javascript_pack_tag "application", 'data-turbolinks-track': "reload" %>
+  </head>
+   <body class="bg-gray-50" >
+   <div class="main-content">
+       <div class="flex-col">
+        <div class="flex-col">
+        <div>  <%= render partial: "shared/navbar" %></div>
+        </div>
+        <div class="flex mt-0">
+         <%= render partial: "shared/customerSidebar" %>
+           <div class=" h-full flex-1 p-10 bg-gray-50 pl-72 pt-16"> <%= yield %></div>
+         </div>
+       
+    </div>
+    </div>
+  </body>
+</html>
