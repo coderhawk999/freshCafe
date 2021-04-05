@@ -52,11 +52,11 @@
             </svg>
           </div>
           <h2 class="mt-4 text-xl dark:text-gray-300 font-extrabold capitalize">
-            Hello Enoshima
+            Hello <%= current_user.name %>
           </h2>
           <span class="text-sm dark:text-gray-300">
             <span class="font-semibold text-green-600 dark:text-green-300">
-              Admin
+              <%= current_user.is_admin ? "Admin" : current_user.is_clirk ? "Clerk" : "" %>
             </span>
           </span>
         </div>

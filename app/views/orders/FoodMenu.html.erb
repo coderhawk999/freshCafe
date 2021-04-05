@@ -1,21 +1,28 @@
 <div class="flex pt-10 pb-5 align-middle justify-between">
     <!-- Top NavBar -->
     <div class="flex flex-1">
-        <svg class="w-10 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-          </svg>
+      <svg
+      class="w-10 mr-2"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M4 6h16M4 12h16M4 18h16"
+      />
+    </svg>
     
-      <h1 class="text-4xl font-bold">Food Menu</h1>
+      <h1 class="text-4xl font-bold">Our Menu</h1>
     </div>
-    <%= link_to "Cancel Order", new_order_path, class: "mr-5 px-6 py-2 text-black
-    bg-white  rounded-md focus:bg-red-600 hover:shadow-lg focus:outline-none shadow
-    cursor-pointer " %>
-    <%= link_to "Confirm Order", checkout_orders_path, class: "px-6 py-2 text-white
-                bg-red-500 rounded-md focus:bg-red-600  hover:shadow-lg focus:outline-none
-                cursor-pointer " %>
+
   
     <br />
   </div>
+  <% if @cart.foodcarts_items.count > 0 %>
   <div class="bg-white p-10 shadow-md mt-10">
     <div class="flex justify-between">
         <div class="flex flex-1">
@@ -35,10 +42,20 @@
     <% end %>
         
     </div>
-    <%= button_to "Clear Cart", clear_cart_orders_path, method: :delete , class: "w-40 px-3 py-2 mt-10 text-white bg-red-500  rounded-md focus:bg-red-600 hover:bg-red-400 focus:outline-none cursor-pointer " %>
-  
+    
+    <div class="flex justify-end">
+      <%= link_to "Clear Cart", clear_cart_orders_path, class: "px-6 py-2 text-red-400 mr-2
+      bg-white border-2 rounded-md focus:bg-red-600  hover:shadow-lg focus:outline-none
+      cursor-pointer " , method: :delete %>
+      <%= link_to "Confirm Order", checkout_orders_path, class: "px-6 py-2 text-white
+      bg-red-500 rounded-md focus:bg-red-600  hover:shadow-lg focus:outline-none
+      cursor-pointer " %>
+    </div>
+
   </div>
-  
+  <% else %>
+    <div></div>
+  <% end %>
   
   <div class="mt-20">
     <% @menu_categories.each do |menu| %>

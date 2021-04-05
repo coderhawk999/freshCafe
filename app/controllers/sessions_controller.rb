@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  layout "loginLayout"
   def new
   end
 
@@ -20,6 +21,8 @@ class SessionsController < ApplicationController
   def login
   end
 
+  def unauthorized
+  end
 
   def destroy
     session[:user_id] = nil 

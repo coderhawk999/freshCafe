@@ -10,6 +10,30 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def adminAuth
+    if !current_user.is_admin
+      redirect_to unauthorised_path
+    else
+      return
+    end
+  end
+
+  def cafeAuth
+    if !current_user.is_admin && !current_user.is_clirk
+      redirect_to unauthorised_path
+    else
+      return
+    end
+  end
+
+  def clerkAuth
+    if !current_user.is_clirk
+      redirect_to unauthorised_path
+    else
+      return
+    end
+  end
+
   def loggedIn
     if session[:user_id]
       if current_user.is_admin?

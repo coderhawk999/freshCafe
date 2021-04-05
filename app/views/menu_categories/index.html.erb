@@ -35,10 +35,24 @@
         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
           </svg>
-        <p class="text-3xl font-semibold">
+          <div>
+            <div class="flex items-center h-5">
+             
+            </div>
+          </div>
+        <p class="text-3xl font-semibold">          
             <%= menu.name %>
         </p>
         </div>
+        <% if menu.is_active %>
+        <%= link_to "Active Category", "/home/menu/#{menu.id}/status", class: "mr-2 px-6 py-2 text-white
+        bg-green-500 rounded-md focus:bg-green-600 hover:bg-green-400 focus:outline-none
+        cursor-pointer " ,method: :put %>
+        <% else %>
+        <%= link_to "Deactivated Category", "/home/menu/#{menu.id}/status", class: "mr-2 px-6 py-2 text-white
+        bg-gray-500 rounded-md focus:bg-gray-600 hover:bg-gray-400 focus:outline-none
+        cursor-pointer " ,method: :put %>
+        <% end %>
         <%= link_to "Add new item", "/home/menu/#{menu.id}/item/new", class: "px-6 py-2 text-white
         bg-red-500 rounded-md focus:bg-red-600 hover:bg-red-400 focus:outline-none
         cursor-pointer " %>

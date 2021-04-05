@@ -1,8 +1,9 @@
 class OrdersController < ApplicationController
   def new
+    cafeAuth
     @cart = Foodcart.find_by_user_id(current_user[:id])
     @foodcarts_item = FoodcartsItem.new
-    @menu_categories = MenuCategory.all
+    @menu_categories = MenuCategory.where(is_active: true)
     @items = MenuCategoriesItem.all
   end
 
@@ -81,7 +82,7 @@ class OrdersController < ApplicationController
   def FoodMenu
     @cart = Foodcart.find_by_user_id(current_user[:id])
     @foodcarts_item = FoodcartsItem.new
-    @menu_categories = MenuCategory.all
+    @menu_categories = MenuCategory.where(is_active: true)
     @items = MenuCategoriesItem.all
   end
 
@@ -113,9 +114,17 @@ class OrdersController < ApplicationController
     @cart_items = @cart.foodcarts_items.find_by(foodcart_id: @cart.id)
     @cart.foodcarts_items.destroy_all
     if request.path == new_order_path
-      redirect_to new_order_path
+      if !current_user.is_admin && !current_user.is_clirk
+        redirect_to home_Food_Menu_path
+      else
+        redirect_to new_order_path
+      end
     else
-      redirect_to orders_path
+      if !current_user.is_admin && !current_user.is_clirk
+        redirect_to myorders_orders_path
+      else
+        redirect_to new_order_path
+      end
     end
   end
 
