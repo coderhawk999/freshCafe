@@ -8,7 +8,7 @@ import Turbolinks from "turbolinks";
 import * as ActiveStorage from "@rails/activestorage";
 import "channels";
 import "../stylesheets/application.scss"; // ADD THIS LINE
-
+//= require toastr
 Rails.start();
 Turbolinks.start();
 ActiveStorage.start();

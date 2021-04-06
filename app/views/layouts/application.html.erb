@@ -9,7 +9,8 @@
     <%= stylesheet_pack_tag "application", 'data-turbolinks-track': "reload" %>
     <%= javascript_pack_tag "application", 'data-turbolinks-track': "reload" %>
   </head>
-   <body >
+   <body class="bg-gray-50">
+
    <div class="main-content">
        <div class="flex-col">
         <div class="flex-col">
@@ -17,7 +18,14 @@
         </div>
         <div class="flex mt-0">
          <%= render partial: "shared/sidebar" %>
-           <div class=" flex-1 p-10 bg-gray-50 pl-72 pt-16"> <%= yield %></div>
+         
+           <div class=" flex-1 p-10 bg-gray-50 pl-72 pt-16">
+            <% flash.each do |type, msg| %>
+         <div class="text-red-600 ">
+           <%= msg %>
+         </div>
+       <% end %> 
+            <%= yield %></div>
          </div>
        
     </div>

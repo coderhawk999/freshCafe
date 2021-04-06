@@ -34,7 +34,7 @@ class UsersController < ApplicationController
 def update
   @user = User.find(session[:user_id])
     if @user.update(update_attributes)
-      flash[:success] = "User was successfully updated"
+      flash[:alert] = "Updated."
       redirect_back(fallback_location: root_path)
     else
       flash[:error] = "Something went wrong"
