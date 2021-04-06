@@ -15,6 +15,9 @@ class SessionsController < ApplicationController
       else
         redirect_to myorders_orders_path
       end
+    else
+      flash[:success] = "Invalid Password or Email Address"
+      redirect_to login_path
     end
   end
 
