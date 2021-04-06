@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user[:is_admin] = false
     @user[:is_clirk] = false
-        @foodcart = Foodcart.new
+    @foodcart = Foodcart.new
 
     if @user.save
       @foodcart[:user_id] = @user.id
@@ -26,6 +26,21 @@ class UsersController < ApplicationController
       end
     end
   end
+
+  def edit
+    @user = User.find(session[:user_id])
+  end
+
+def update
+  @user = User.find(session[:user_id])
+    if @user.update(update_attributes)
+      flash[:success] = "User was successfully updated"
+      redirect_back(fallback_location: root_path)
+    else
+      flash[:error] = "Something went wrong"
+      redirect_to :back
+    end
+end
 
   def create
     adminAuth
@@ -38,7 +53,7 @@ class UsersController < ApplicationController
     end
     @user = User.new(user_params)
     print(@user)
-    
+
     @foodcart = Foodcart.new
 
     if @user.save
@@ -60,6 +75,7 @@ class UsersController < ApplicationController
     @user.destroy
     redirect_to users_path
   end
+
   private
 
   def singup_params
@@ -67,6 +83,11 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :is_admin,:phone, :is_clirk)
+    params.require(:user).permit(:name, :email, :password, :is_admin, :phone, :is_clirk)
+  end
+
+
+  def update_attributes
+    params.require(:user).permit(:name, :email, :password, :phone)
   end
 end
