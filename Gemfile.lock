@@ -213,7 +213,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sqlite3 (1.4.2)
     thor (1.1.0)
     tilt (2.0.10)
     toastr-rails (1.0.3)
@@ -266,7 +265,6 @@ DEPENDENCIES
   selenium-webdriver
   simple_form (~> 5.1)
   spring
-  sqlite3 (~> 1.4)
   toastr-rails
   turbolinks (~> 5)
   tzinfo-data
