@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   layout :loggedIn
-  helper_method :current_user, :store_return_to
+  helper_method :current_user, :store_return_to, :is_loggedIn?
 
   def current_user
     if session[:user_id]
@@ -24,6 +24,10 @@ class ApplicationController < ActionController::Base
     else
       return
     end
+  end
+
+  def is_loggedIn?
+    !current_user.nil?
   end
 
   def clerkAuth

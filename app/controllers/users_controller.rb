@@ -10,7 +10,16 @@ class UsersController < ApplicationController
   end
 
   def signup
+    if is_loggedIn?
+      if current_user.is_admin || current_user.is_clirk
+        redirect_to orders_path
+      else
+        redirect_to home_Food_Menu_path
+      end
+    end
+
     @user = User.new
+
   end
 
   def newsignup
