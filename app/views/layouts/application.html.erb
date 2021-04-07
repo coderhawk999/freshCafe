@@ -15,16 +15,14 @@
        <div class="flex-col">
         <div class="flex-col">
         <div>  <%= render partial: "shared/navbar" %></div>
+        <%= render partial: "shared/flash_message" %>
+
         </div>
         <div class="flex mt-0">
          <%= render partial: "shared/sidebar" %>
          
            <div class=" flex-1 p-10 bg-gray-50 pl-72 pt-16">
-            <% flash.each do |type, msg| %>
-         <div class="text-red-600 ">
-           <%= msg %>
-         </div>
-       <% end %> 
+
             <%= yield %></div>
          </div>
        

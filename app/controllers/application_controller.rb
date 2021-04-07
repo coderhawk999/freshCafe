@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   layout :loggedIn
+  add_flash_types :success, :warning, :danger, :info
   helper_method :current_user, :store_return_to, :is_loggedIn?, :show_flash
 
   def show_flash(options = {})

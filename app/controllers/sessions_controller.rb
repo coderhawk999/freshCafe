@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   layout "loginLayout"
+
   def new
   end
 
@@ -9,15 +10,22 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
 
       if @user.is_admin
-        redirect_to users_path
+        respond_to do |format|
+          format.html { redirect_to users_path, success: "Logged In, Welcome back #{@user.name}" }
+        end
       elsif @user.is_clirk
-        redirect_to orders_path
+        respond_to do |format|
+          format.html { redirect_to orders_path, success: "Logged In, Welcome back #{@user.name}" }
+        end
       else
-        redirect_to myorders_orders_path
+        respond_to do |format|
+          format.html { redirect_to myorders_orders_path, success: "Logged In, Welcome back #{@user.name}" }
+        end 
       end
     else
-      flash[:success] = "Invalid Password or Email Address"
-      redirect_to login_path
+      respond_to do |format|
+        format.html { redirect_to login_path, alert: "Invalid Password or Email Address" }
+      end
     end
   end
 
@@ -28,7 +36,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil 
+    session[:user_id] = nil
     redirect_to login_path
   end
 end

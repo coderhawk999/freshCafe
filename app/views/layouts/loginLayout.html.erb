@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    
     <title>FreshCafe</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
@@ -10,6 +11,10 @@
     <%= javascript_pack_tag "application", 'data-turbolinks-track': "reload" %>
   </head>
    <body >
+    
+
+    <div class="text-red-600 ">
+    </div>
     <% flash.each do |type, msg| %>
 
     <div class="alert-banner w-full fixed top-0">
@@ -24,10 +29,6 @@
         </svg>
       </label>
     </div>
-    <% end %>
-
-    <div class="text-red-600 ">
-    </div>
-\    <%= yield %>
+    <% end %>    <%= yield %>
   </body>
 </html>
