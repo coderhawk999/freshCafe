@@ -61,14 +61,18 @@ end
       params[:user][:is_clirk] = true
     end
     @user = User.new(user_params)
-    print(@user)
 
     @foodcart = Foodcart.new
 
-    if @user.save
+    if @user.valid?
+      @user.save
       @foodcart[:user_id] = @user.id
       if @foodcart.save
         redirect_to users_path
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to new_user_path, alert: "#{@user.errors.objects.first.full_message}" }
       end
     end
   end

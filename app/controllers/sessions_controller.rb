@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
       else
         respond_to do |format|
           format.html { redirect_to myorders_orders_path, success: "Logged In, Welcome back #{@user.name}" }
-        end 
+        end
       end
     else
       respond_to do |format|

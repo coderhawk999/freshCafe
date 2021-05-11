@@ -1,12 +1,12 @@
 <% flash.each do |type, msg| %>
 <div class="alert-banner w-full fixed top-0">
   <input type="checkbox" class="hidden" id="banneralert">
-    
+    <% print(type) %>
     <% if type == "success" %>
         <label class="close cursor-pointer flex items-center justify-between w-full p-2 bg-green-500 shadow text-white" title="close" for="banneralert">
 
-    <% elsif type == "error" %>
-        <label class="close cursor-pointer flex items-center justify-between w-full p-2 bg-red-500 shadow text-white" title="close" for="banneralert">
+    <% elsif type == "alert" %>
+        <label class="close cursor-pointer flex items-center justify-between w-full p-2 bg-red-700 shadow text-white" title="close" for="banneralert">
     <% end %>
     <p class="flex-1 text-center">  <%=  msg %>  </p>
    
