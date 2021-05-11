@@ -60,15 +60,3 @@
 
 
 
-<h1> <%= @menu_category.name %> </h1>
-
-<%= simple_form_for([@menu_category, @menu_category.menu_categories_items.build]) do |f| %>
-    <%= f.input :name, input_html: { class: "inout" }, label_html: { class: "label" } %>
-    <%= f.input :description, input_html: { class: "inout" }, label_html: { class: "label" } %>
-    <%= f.input :price, input_html: { class: "inout" }, label_html: { class: "label" } %>
-
-    <%= f.input :is_available, input_html: { class: "inout" }, label_html: { class: "label" }, as: :radio_buttons %>
-
-    <%= f.submit :submit, disable_with: "Submiting..." %>
-
-<% end %>
