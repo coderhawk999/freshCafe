@@ -1,24 +1,26 @@
-# README
+# [Fresh Cafe](https://freshcafe.herokuapp.com/) 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+> Web Application for Online Food Ordering and Management.
 
-Things you may want to cover:
+Built with Ruby on Rails, Tailwindcss.
 
-* Ruby version
+### Features
 
-* System dependencies
+- Users Mangament
+- Online and Walk-in Order Management
+- Menu items with Toggle to activate and deactivate Items.
 
-* Configuration
+![Orders Page](https://user-images.githubusercontent.com/36099616/121947653-e614fb80-cd73-11eb-88e4-3bef66f7ba3a.png)
+![Menu Items](https://user-images.githubusercontent.com/36099616/121947557-ca115a00-cd73-11eb-809d-77a1b32e2627.png)
 
-* Database creation
+## Project setup
+```
+git clone https://github.com/coderhawk999/freshcafe
+cd freshcafe
+bundle install
+rails s
+```
+## To do
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- [ ] Billing and Storing Invoices
+- [ ] Analytics
